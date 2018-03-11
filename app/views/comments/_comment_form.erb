@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for([@comment.article, @comment]) do |f| %>
+
+    <% if @comment.errors.any? %>
+      <div class="panel panel-danger col-md-offset-1">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <%= pluralize(@article.errors.count, "Error") %>
+            prohibited this article from being saved:
+          </h2>
+          <div class="panel-body">
+            <ul>
+              <% @comment.errors.full_messages.each do |msg| %>
+              <li>
+                <%= msg %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+      <div class="form-group">
+        <div class="control-label col-md-1">
+          <%= f.label :body %>
+        </div>
+        <div class="col-md-11">
+          <%= f.text_area :body, rows: 10, class: 'form-control', placeholder: 'Body of comment', focus: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-1 col-md-11">
+          <%= f.submit class: 'btn btn-primary btn-lg pull-right' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
